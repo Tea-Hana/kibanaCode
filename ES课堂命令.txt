@@ -1,0 +1,591 @@
+#查看节点信息
+GET _cat/nodes?v
+
+#查看集群健康状态
+GET _cat/health?v
+
+#查看都有哪些索引
+GET _cat/indices
+
+#查询都有哪些别名
+GET _cat/aliases?v
+
+#查看当前系统中都有哪些模板
+GET _cat/templates
+
+#手动创建Mapping
+PUT stu
+{
+  "mappings": {
+    "_doc":{
+      "properties":{
+        "id":{
+          "type":"keyword"
+        },
+        "name":{
+          "type":"text"
+        },
+        "sex":{
+          "type":"boolean"
+        },
+        "birth":{
+          "type":"date"
+        }
+      }
+    }
+  }
+}
+
+#往索引中插入数据
+PUT stu/_doc/1001
+{
+  "id":"101",
+  "name":"班长",
+  "sex":true,
+  "birth":"2022-03-21"
+}
+
+PUT stu/_doc/1001
+{
+  "id":"101",
+  "name":"班长",
+  "sex":true,
+  "birth":"2022-03-22"
+}
+
+POST stu/_doc
+{
+  "id":"101",
+  "name":"班长",
+  "sex":true,
+  "birth":"2022-03-22"
+}
+
+#查看数据
+GET stu/_search
+
+#自动创建Mapping
+PUT stu1/_doc/1001
+{
+  "id":"101",
+  "name":"班长",
+  "sex":true,
+  "birth":"2022-03-21"
+}
+
+#查看Mapping信息
+GET stu1/_mapping
+
+#查看分词结果
+GET _analyze
+{
+  "text":"我是程序员"
+}
+
+#使用ik分词器查看分词结果 -- ik_smart
+GET _analyze
+{
+  "analyzer": "ik_smart",
+  "text": "我是程序员"
+}
+
+#ik_max_word
+GET _analyze
+{
+  "analyzer": "ik_max_word",
+  "text": "我是程序员"
+}
+
+PUT student
+{
+  "mappings": {
+    "_doc":{
+      "properties":{
+        "class_id":{
+          "type":"keyword"
+        },
+        "stu_id":{
+          "type":"keyword"
+        },
+        "name":{
+          "type":"text"
+        },
+        "sex":{
+          "type":"keyword"
+        },
+        "age":{
+          "type":"integer"
+        },
+        "favo":{
+          "type":"text",
+          "analyzer":"ik_max_word"
+        }
+      }
+    }
+  }
+}
+
+PUT student/_doc/1001
+{
+  "class_id":"1027",
+  "stu_id":101,
+  "name":"班长",
+  "sex":"男",
+  "age":"18",
+  "favo":"乒乓球,海狗人参丸,大保健,足疗"
+}
+
+PUT student/_doc/1002
+{
+  "class_id":"1027",
+  "stu_id":102,
+  "name":"阿鑫",
+  "sex":"男",
+  "age":"21",
+  "favo":"唱歌,跳舞,rap,篮球"
+}
+
+PUT student/_doc/1003
+{
+  "class_id":"1027",
+  "stu_id":103,
+  "name":"阿明",
+  "sex":"男",
+  "age":"24",
+  "favo":"女模,喝酒,抽烟,烫头,hip-hop,高尔夫球"
+}
+
+PUT student/_doc/1004
+{
+  "class_id":"1027",
+  "stu_id":104,
+  "name":"阿朝",
+  "sex":"男",
+  "age":"24",
+  "favo":"看人跳舞,海狗人参丸,橄榄球"
+}
+
+PUT student/_doc/1005
+{
+  "class_id":"1027",
+  "stu_id":105,
+  "name":"岸哥",
+  "sex":"男",
+  "age":"80",
+  "favo":"华子,玉溪子,芙蓉王子,苏子,本田柚子,羽毛球"
+}
+
+PUT student/_doc/1006
+{
+  "class_id":"1027",
+  "stu_id":106,
+  "name":"阿飞",
+  "sex":"女",
+  "age":"17",
+  "favo":"跳热舞,cosplay,充气球"
+}
+
+PUT student/_doc/1007
+{
+  "class_id":"1027",
+  "stu_id":107,
+  "name":"于老爷子",
+  "sex":"男",
+  "age":"50",
+  "favo":"KTV叫俩果盘,过18的不要,溜溜球"
+}
+
+PUT student/_doc/1008
+{
+  "class_id":"1027",
+  "stu_id":108,
+  "name":"阿震",
+  "sex":"女",
+  "age":"18",
+  "favo":"打麻将,吃辣条,看帅哥,钢丝球"
+}
+
+PUT student/_doc/1009
+{
+  "class_id":"1027",
+  "stu_id":109,
+  "name":"阿伟",
+  "sex":"女",
+  "age":"70",
+  "favo":"看美女，台球，玻璃球，铅球"
+}
+
+PUT student/_doc/1010
+{
+  "class_id":"1027",
+  "stu_id":110,
+  "name":"橘子",
+  "sex":"女",
+  "age":"16",
+  "favo":"带胸牌,口罩,男,手机交一下,睡觉的醒醒,口碑推荐一下,记得打卡,回力球"
+}
+
+PUT student/_doc/1011
+{
+  "class_id":"1111",
+  "stu_id":111,
+  "name":"林大神",
+  "sex":"男",
+  "age":"24",
+  "favo":"看球球,喝汽水,做运动,羽毛球"
+}
+
+PUT student/_doc/1012
+{
+  "class_id":"1111",
+  "stu_id":112,
+  "name":"阿海",
+  "sex":"女",
+  "age":"16",
+  "favo":"乒乓球,海狗人参丸,大保健,足疗,按摩,烫头,女装"
+}
+
+PUT student/_doc/1013
+{
+  "class_id":"1111",
+  "stu_id":113,
+  "name":"阿猛",
+  "sex":"男",
+  "age":"50",
+  "favo":"老婆,洗袜子,喝椰奶,吃丸子,溜溜球"
+}
+
+PUT student/_doc/1014
+{
+  "class_id":"1111",
+  "stu_id":114,
+  "name":"阿垒",
+  "sex":"女",
+  "age":"90",
+  "favo":"跳广场舞,打麻将,老头子,飙车,小鲜肉,高尔夫球"
+}
+
+#全文档检索
+GET student/_search
+
+GET _analyze
+{
+  "analyzer": "ik_max_word", 
+  "text": "足球"
+}
+
+#字段全值匹配
+GET student/_search
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "favo": "海狗"
+        }
+      }
+    }
+  }
+}
+
+#字段分词匹配
+GET student/_search
+{
+  "query": {
+    "match": {
+      "favo": "海狗人参丸"
+    }
+  }
+}
+
+#全值匹配和分词匹配结合使用
+GET student/_search
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "sex": "男"
+        }
+      },
+      "must": [
+        {
+          "match": {
+            "favo": "橄榄球"
+          }
+        }
+      ]
+    }
+  }
+}
+
+#字段模糊查询
+GET student/_search
+{
+  "query": {
+    "fuzzy": {
+      "class_id": 1020
+    }
+  }
+}
+
+#单聚合条件，查询同班级下人数
+GET student/_search
+{
+  "aggs": {
+    "groupByClass": {
+      "terms": {
+        "field": "class_id"
+      }
+    }
+  }
+}
+
+#多聚合条件相互之间没有关联  
+#查询每个班级有多少人，和 所有人中最大的年龄
+
+GET student/_search
+{
+  "aggs": {
+    "groupByClass": {
+      "terms": {
+        "field": "class_id"
+      }
+    },
+    "groupByAge":{
+      "max": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+#聚合嵌套检索，相互之间有关联
+#查询每个班级下年龄最大的
+GET student/_search
+{
+  "aggs": {
+    "groupByClass": {
+      "terms": {
+        "field": "class_id"
+      },
+      "aggs": {
+        "groupByAge": {
+          "max": {
+            "field": "age"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#分页检索
+GET student/_search
+{
+  "from":0,
+  "size":3
+}
+
+#查询出男性中喜欢玩球的并且同班级下年龄最大的学生,并从第0条显示，显示2条
+GET student/_search
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": {
+          "sex": "男"
+        }
+      },
+      "must": [
+        {
+          "match": {
+            "favo": "橄榄球"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "groupByClass": {
+      "terms": {
+        "field": "class_id"
+      },
+      "aggs": {
+        "groupByAge": {
+          "max": {
+            "field": "age"
+          }
+        }
+      }
+    }
+  },
+  "from": 0,
+  "size": 2
+}
+
+#创建索引时声明别名
+PUT movie_2022
+{
+  "aliases": {
+    "movie_query": {}
+  }, 
+  "mappings": {
+    "_doc":{
+      "properties":{
+        "id":{
+          "type":"integer"
+        },
+        "name":{
+          "type":"text",
+          "analyzer":"ik_smart"
+        }
+      }
+    }
+  }
+}
+
+#通过索引名放数据
+PUT movie_2022/_doc/1001
+{
+  "id":"101",
+  "name":"蜘蛛侠3-英雄无归"
+}
+
+#根据索引名检索数据
+GET movie_2022/_search
+
+#通过别名写数据
+PUT movie_query/_doc/1002
+{
+  "id":"102",
+  "name":"新蝙蝠侠"
+}
+
+#根据别名检索数据
+GET movie_query/_search
+
+#为已存在的索引增加别名
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "student",
+        "alias": "student_query"
+      }
+    }
+  ]
+}
+
+GET student_query/_search
+
+#增加过滤条件，建立一个子集视图
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "student",
+        "alias": "student_male",
+        "filter": {
+          "term": {
+            "sex": "男"
+          }
+        }
+      }
+    }
+  ]
+}
+
+GET student_male/_search
+
+#删除索引别名
+POST _aliases
+{
+  "actions": [
+    {
+      "remove": {
+        "index": "student",
+        "alias": "student_query"
+      }
+    }
+  ]
+}
+
+#通过别名进行无缝切换
+POST _aliases
+{
+  "actions": [
+    {
+      "remove": {
+        "index": "movie_2022",
+        "alias": "movie_query"
+      }
+    },
+    {
+      "add": {
+        "index": "student",
+        "alias": "movie_query"
+      }
+    }
+  ]
+}
+
+GET movie_query/_search
+
+#索引模板
+PUT _template/template_movie2022
+{
+  "index_patterns": ["movie_test*"],
+  "aliases" : { 
+    "{index}-query": {},
+    "movie_test-query":{}
+  },
+  "mappings": { 
+"_doc": {
+      "properties": {
+        "id": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "text",
+          "analyzer": "ik_smart"
+        }
+      }
+    }
+  }
+}
+
+PUT movie_test1/_doc/1001
+{
+  "id":"101",
+  "name":"鲁滨逊漂流记"
+}
+
+GET movie_test1/_mapping
+
+PUT movie1/_doc/1001
+{
+  "id":"101",
+  "name":"鲁滨逊漂流记"
+}
+
+GET movie1/_mapping
+
+PUT movie_test-1027/_doc/1001
+{
+  "id":"101",
+  "name":"让子弹飞"
+}
+
+GET movie_test-query/_search
+
+#查看某个模板的详情
+GET  _template/template_movie2022
+
+#删除模板
+DELETE _template/template_movie2022
+
+GET movie/_search
